@@ -23,6 +23,8 @@ const RadioPage = () => {
   const [direction, setDirection] = useState('right');
   const [isOpen, setIsOpen] = useState(false);
   const [ascending, setAscending] = useState(false);
+  const [songsLoaded, setSongsLoaded] = useState(false);
+
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -89,6 +91,12 @@ const RadioPage = () => {
 
     setTopThreeNfts(topThreeNfts);
     setNfts(sortedNfts);
+
+    setSongsLoaded(true);
+  }
+
+  if (!songsLoaded) {
+    return <div>Loading songs...</div>;
   }
 
   async function loadSongsAscending() {
@@ -387,7 +395,7 @@ const RadioPage = () => {
             </div>
           </div>
           <div className="hero ">
-            {nfts.length > 0 ? (
+            {songsLoaded ? (
               <div
                 key={currentIndex}
                 className="card border-b border-[#2a2a2a] w-full "
