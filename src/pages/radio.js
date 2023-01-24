@@ -621,6 +621,8 @@ const RadioPage = () => {
               </label>
             </div>
 
+            <h1 className="text-2xl font-bold">Queue</h1>
+
             {nfts.length ? (
               nfts.map((nft, index) => (
                 <li
