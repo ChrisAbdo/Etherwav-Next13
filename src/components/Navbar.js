@@ -59,7 +59,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="flex justify-between">
-              <Link href="/radio" className="justify-between">
+              <Link href="/radio" className="justify-between" legacyBehavior>
                 <a>
                   Radio{' '}
                   <svg
@@ -80,7 +80,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="flex justify-between">
-              <Link href="/upload" className="justify-between">
+              <Link href="/upload" className="justify-between" legacyBehavior>
                 <a>
                   Upload{' '}
                   <svg
@@ -101,7 +101,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="flex justify-between">
-              <Link href="/profile" className="justify-between">
+              <Link href="/profile" className="justify-between" legacyBehavior>
                 <a>
                   Profile{' '}
                   <svg
@@ -135,22 +135,18 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/radio">
-              <a>Radio</a>
+            <Link href="/" legacyBehavior>
+              Home
             </Link>
           </li>
           <li>
-            <Link href="/upload">
-              <a>Upload</a>
-            </Link>
+            <Link href="/radio">Radio</Link>
           </li>
           <li>
-            <Link href="/profile">
-              <a>Profile</a>
-            </Link>
+            <Link href="/upload">Upload</Link>
+          </li>
+          <li>
+            <Link href="/profile">Profile</Link>
           </li>
         </ul>
       </div>

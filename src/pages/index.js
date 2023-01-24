@@ -292,11 +292,11 @@ const Home = () => {
                   className="text-white link link-hover underline"
                   href="/upload"
                 >
-                  <a>uploading a beat!</a>
+                  uploading a beat!
                 </Link>
               </p>
               <Link href="/upload" className="btn rounded-xl btn-outline">
-                <a>Upload a beat now!</a>
+                Upload a beat now!
               </Link>
             </div>
           </div>

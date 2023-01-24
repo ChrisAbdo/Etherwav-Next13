@@ -366,7 +366,7 @@ const RadioPage = () => {
                 <div className=" flex items-center justify-center text-center">
                   <div className="stats shadow w-full border border-[#2a2a2a]">
                     {topThreeNfts.map((nft, index) => (
-                      <div className="stat w-full card2" key={index}>
+                      <div className="stat w-full h-32 card2" key={index}>
                         <div className="stat-figure text-primary text-7xl animate-pulse">
                           {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
                         </div>
