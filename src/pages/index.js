@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Marquee from 'react-fast-marquee';
 
@@ -287,16 +288,16 @@ const Home = () => {
               </h1>
               <p className="py-6 text-2xl">
                 It&apos;s as easy as{' '}
-                <a
+                <Link
                   className="text-white link link-hover underline"
                   href="/upload"
                 >
-                  uploading a beat!
-                </a>
+                  <a>uploading a beat!</a>
+                </Link>
               </p>
-              <a href="/upload" className="btn rounded-xl btn-outline">
-                Upload a beat now!
-              </a>
+              <Link href="/upload" className="btn rounded-xl btn-outline">
+                <a>Upload a beat now!</a>
+              </Link>
             </div>
           </div>
         </motion.div>

@@ -6,6 +6,7 @@ import Web3 from 'web3';
 import Radio from '../../backend/build/contracts/Radio.json';
 import NFT from '../../backend/build/contracts/NFT.json';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 const ipfsClient = require('ipfs-http-client');
 const projectId = '2FdliMGfWHQCzVYTtFlGQsknZvb';
@@ -387,9 +388,9 @@ const Upload = () => {
               Browse the radio for some inspiration!
             </h1>
             <div className="card-actions w-full mt-4">
-              <a href="/radio" className="btn btn-outline w-full rounded-xl">
+              <Link href="/radio" className="btn btn-outline w-full rounded-xl">
                 Listen to radio
-              </a>
+              </Link>
             </div>
           </div>
         </div>
