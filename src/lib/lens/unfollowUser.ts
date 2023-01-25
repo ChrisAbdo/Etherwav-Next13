@@ -4,7 +4,6 @@ import { SmartContract, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { fetchData } from "../../../auth-fetcher";
 import { LENS_ABI } from "../../../const/abis";
 import { LENS_CONTRACT_ADDRESS } from "../../../const/blockchain";
-import { useGlobalInformationModalContext } from "../../context/GlobalInformationModalContext";
 import {
   CreateUnfollowTypedDataDocument,
   CreateUnfollowTypedDataMutation,
@@ -82,7 +81,6 @@ async function unfollow(
 export function useUnfollowUser() {
   const sdk = useSDK();
   const address = useAddress();
-  const { setModalState } = useGlobalInformationModalContext();
   const { contract } = useContract(LENS_CONTRACT_ADDRESS, LENS_ABI);
 
   return useMutation(
@@ -90,10 +88,7 @@ export function useUnfollowUser() {
     {
       onError: async (error) => {
         console.error(error);
-        setModalState({
-          type: "error",
-          message: "Failed to unfollow user.",
-        });
+      
       },
     }
   );

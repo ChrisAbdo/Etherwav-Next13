@@ -4,11 +4,10 @@
  * @param decoration
  */
 
-import Decoration from "../../types/Decoration";
 
 export default function wrapTextInMarkdown(
   text: string,
-  decoration: Decoration
+  decoration: string
 ): string {
   switch (decoration) {
     case "h1":

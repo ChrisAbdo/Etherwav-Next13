@@ -1,9 +1,5 @@
-import { Grid, Typography } from "@mui/material";
-import React from "react";
-import { usePublicationsQuery } from "../../graphql/generated";
-import FeedItemComponent from "../feed/FeedItem";
-import styles from "./post.module.css";
-import feedStyles from "../feed/feed.module.css";
+import React from 'react';
+import { usePublicationsQuery } from '../../graphql/generated';
 
 type Props = {
   publicationId: string;
@@ -18,31 +14,23 @@ export default function CommentSection({ publicationId }: Props) {
     },
   });
 
-  console.log("comments:", comments);
+  console.log('comments:', comments);
 
   return (
-    <div className={styles.commentSection}>
-      <Typography variant="h3" component="p">
-        Comments
-      </Typography>
+    <div>
+      <h1>Comments</h1>
 
-      <Grid container direction="column">
+      <div>
         {loadingComments ? (
-          <Typography variant="body1">Loading comments...</Typography>
+          <h1>Loading comments...</h1>
         ) : (
           comments?.publications.items.map((comment) => (
-            <Grid
-              item
-              xs={12}
-              key={comment.id}
-              className={feedStyles.feedItemWrapper}
-            >
+            <div key={comment.id}>
               {/* @ts-ignore TODO: Type is wrong here. */}
-              <FeedItemComponent post={comment} />
-            </Grid>
+            </div>
           ))
         )}
-      </Grid>
+      </div>
     </div>
   );
 }

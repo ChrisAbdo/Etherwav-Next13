@@ -1,29 +1,21 @@
-import React from "react";
+import React from 'react';
 import {
   PublicationQuery,
   ReactionTypes,
   useAddReactionMutation,
-} from "../../graphql/generated";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag"; // Collect
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble"; // Comment
-import RepeatIcon from "@mui/icons-material/Repeat"; // Mirror
-import ThumbDownIcon from "@mui/icons-material/ThumbDown"; // Downvote
-import ThumbUpIcon from "@mui/icons-material/ThumbUp"; // Upv
-import ShareIcon from "@mui/icons-material/Share";
-import styles from "./post.module.css";
-import { Typography, Tooltip, ButtonBase, Button } from "@mui/material";
-import { useLensUserContext } from "../../context/LensUserContext";
+} from '../../graphql/generated';
+
+import { useLensUserContext } from '../../context/LensUserContext';
 import {
   ConnectWallet,
   useAddress,
   useNetwork,
   useNetworkMismatch,
-} from "@thirdweb-dev/react";
-import { CHAIN_ID } from "../../../const/blockchain";
-import { useGlobalInformationModalContext } from "../../context/GlobalInformationModalContext";
-import { useSnackbarContext } from "../../context/SnackbarContext";
-import { useQueryClient } from "@tanstack/react-query";
-import { useMirrorPost } from "../../lib/lens/mirrorPost";
+} from '@thirdweb-dev/react';
+import { CHAIN_ID } from '../../../const/blockchain';
+
+import { useQueryClient } from '@tanstack/react-query';
+import { useMirrorPost } from '../../lib/lens/mirrorPost';
 
 type Props = {
   publication: PublicationQuery;
@@ -38,7 +30,6 @@ export default function PostActionsContainer({ publication }: Props) {
   const address = useAddress();
   const [, switchNetwork] = useNetwork();
   const networkMismatch = useNetworkMismatch();
-  const { setModalState } = useGlobalInformationModalContext();
 
   const { mutateAsync: addReaction, isLoading: addingReaction } =
     useAddReactionMutation();
@@ -46,12 +37,9 @@ export default function PostActionsContainer({ publication }: Props) {
   const { mutateAsync: createMirror, isLoading: creatingMirror } =
     useMirrorPost();
 
-  const { setSnackbarState } = useSnackbarContext();
-
   const actions = [
     {
-      label: "Upvote",
-      icon: <ThumbUpIcon />,
+      label: 'Upvote',
       onClick: async () => {
         return await addReaction(
           {
@@ -63,25 +51,17 @@ export default function PostActionsContainer({ publication }: Props) {
           },
           {
             onError: async (error) => {
-              setModalState({
-                type: "error",
-                message: ((error as Error).message as string) || "",
-              });
+              console.log(error);
             },
             onSuccess() {
-              setSnackbarState({
-                open: true,
-                severity: "success",
-                message: "Upvoted post successfully!",
-              });
+              console.log('success');
             },
           }
         );
       },
     },
     {
-      label: "Downvote",
-      icon: <ThumbDownIcon />,
+      label: 'Downvote',
       onClick: async () => {
         return await addReaction(
           {
@@ -93,29 +73,20 @@ export default function PostActionsContainer({ publication }: Props) {
           },
           {
             onError: async (error) => {
-              setModalState({
-                type: "error",
-                message: ((error as Error).message as string) || "",
-              });
+              console.log(error);
             },
             onSuccess() {
-              setSnackbarState({
-                open: true,
-                severity: "error",
-                message: "Downvoted post successfully!",
-              });
+              console.log('success');
             },
           }
         );
       },
     },
     {
-      label: "Collect",
-      icon: <ShoppingBagIcon />,
+      label: 'Collect',
     },
     {
-      label: "Mirror",
-      icon: <RepeatIcon />,
+      label: 'Mirror',
       onClick: async () => {
         return await createMirror(
           {
@@ -124,38 +95,29 @@ export default function PostActionsContainer({ publication }: Props) {
           },
           {
             onError: async (error) => {
-              setModalState({
-                type: "error",
-                message: ((error as Error).message as string) || "",
-              });
+              console.log(error);
             },
             onSuccess() {
-              setSnackbarState({
-                open: true,
-                severity: "success",
-                message: "Mirrored post successfully!",
-              });
+              console.log('success');
             },
           }
         );
       },
     },
     {
-      label: "Comment",
-      icon: <ChatBubbleIcon />,
+      label: 'Comment',
     },
     {
-      label: "Share",
-      icon: <ShareIcon />,
+      label: 'Share',
       onClick: () => {
         if (navigator.share) {
           navigator
             .share({
-              title: publication?.publication?.metadata?.name || "",
-              text: publication?.publication?.metadata?.content || "",
+              title: publication?.publication?.metadata?.name || '',
+              text: publication?.publication?.metadata?.content || '',
             })
-            .then(() => console.log("Successful share"))
-            .catch((error) => console.log("Error sharing", error));
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
         }
       },
     },
@@ -167,29 +129,19 @@ export default function PostActionsContainer({ publication }: Props) {
 
   if (networkMismatch) {
     return (
-      <Button
-        className={styles.ctaButton}
-        onClick={() => switchNetwork?.(CHAIN_ID)}
-      >
-        Switch Network
-      </Button>
+      <button onClick={() => switchNetwork?.(CHAIN_ID)}>Switch Network</button>
     );
   }
 
   return (
-    <Typography variant="h3" className={styles.sidebarAuthorName}>
-      <div className={styles.actionContainer}>
+    <h1>
+      <div>
         {actions.map((action) => (
-          <Tooltip title={action.label} key={action.label}>
-            <ButtonBase
-              className={styles.action}
-              onClick={() => action.onClick?.()}
-            >
-              {action.icon}
-            </ButtonBase>
-          </Tooltip>
+          <div key={action.label}>
+            <button onClick={() => action.onClick?.()}>{action.label}</button>
+          </div>
         ))}
       </div>
-    </Typography>
+    </h1>
   );
 }

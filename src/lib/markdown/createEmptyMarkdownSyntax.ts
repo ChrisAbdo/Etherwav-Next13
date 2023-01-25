@@ -1,11 +1,10 @@
-import Decoration from "../../types/Decoration";
 
 /**
  * Accept a Decoration type and return the wrapping markdown
  * e.g. for bold, return "****"
  * e.g. for link, return "[alt text](link)"
  */
-export default function createEmptyMarkdownSyntax(decoration: Decoration) {
+export default function createEmptyMarkdownSyntax(decoration) {
   switch (decoration) {
     case "h1":
       return "\n" + "# ";

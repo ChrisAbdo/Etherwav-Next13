@@ -4,7 +4,6 @@ import { SmartContract, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { fetchData } from "../../../auth-fetcher";
 import { LENS_ABI } from "../../../const/abis";
 import { LENS_CONTRACT_ADDRESS } from "../../../const/blockchain";
-import { useGlobalInformationModalContext } from "../../context/GlobalInformationModalContext";
 import {
   CreateFollowTypedDataDocument,
   CreateFollowTypedDataMutation,
@@ -84,17 +83,13 @@ async function follow(
 export function useFollowUser() {
   const sdk = useSDK();
   const address = useAddress();
-  const { setModalState } = useGlobalInformationModalContext();
   const { contract } = useContract(LENS_CONTRACT_ADDRESS, LENS_ABI);
 
   return useMutation(
     (userId: string) => follow(sdk, address, contract, userId),
     {
       onError: async (error) => {
-        setModalState({
-          type: "error",
-          message: ((error as Error).message as string) || "",
-        });
+        console.error(error);
       },
     }
   );

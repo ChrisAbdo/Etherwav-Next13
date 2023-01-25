@@ -6,13 +6,12 @@
  *
  */
 
-import Decoration from "../../types/Decoration";
 import createEmptyMarkdownSyntax from "./createEmptyMarkdownSyntax";
 import wrapTextInMarkdown from "./wrapTextInMarkdown";
 
 export default function decorateMarkdown(
   input: HTMLTextAreaElement,
-  decoration: Decoration,
+  decoration: string,
   setContent: (content: string) => void
 ) {
   const { selectionStart, selectionEnd, value } = input;
