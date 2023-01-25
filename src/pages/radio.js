@@ -390,12 +390,17 @@ const RadioPage = () => {
                 <div className=" flex items-center justify-center text-center">
                   <div className="stats shadow w-full border border-[#2a2a2a]">
                     {topThreeNfts.map((nft, index) => (
-                      <div className="stat w-full h-32 card2" key={index}>
+                      <div
+                        className="stat large:overflow-hidden h-32 card2"
+                        key={index}
+                      >
                         <div className="stat-figure text-primary text-7xl animate-pulse">
                           {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
                         </div>
-                        <div className=" text-white text-2xl">{nft.name}</div>
-                        <div className="stat-value ">
+                        <div className=" text-white text-2xl truncate">
+                          {nft.name}
+                        </div>
+                        <div className="stat-value text-2xl">
                           {nft.heatCount} Heats🔥
                         </div>
                         <div className="stat-desc">
@@ -425,7 +430,7 @@ const RadioPage = () => {
                     transition={transition}
                   >
                     <Image
-                      src={nfts.length > 0 && nfts[currentIndex].coverImage}
+                      src={nfts[currentIndex].coverImage}
                       width={400}
                       height={400}
                       alt="cover"
@@ -446,6 +451,8 @@ const RadioPage = () => {
                       transition={{ duration: 0.3 }}
                       onClick={async () => {
                         await loadSongsByGenre(nfts[currentIndex].genre);
+                        // reset the index
+                        setCurrentIndex(0);
                         toast.success(`Sorted by ${nfts[currentIndex].genre}`);
                       }}
                     >
@@ -479,7 +486,7 @@ const RadioPage = () => {
                     <button
                       onClick={handlePrevious}
                       disabled={currentIndex === 0}
-                      className="btn btn-outline rounded-xl normal-case bg-[#353535] border-[#2a2a2a]"
+                      className="btn btn-outline rounded normal-case bg-[#353535] border-[#2a2a2a]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -511,7 +518,7 @@ const RadioPage = () => {
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === nfts.length - 1}
-                      className="btn btn-outline rounded-xl normal-case bg-[#353535] border-[#2a2a2a]"
+                      className="btn btn-outline rounded normal-case bg-[#353535] border-[#2a2a2a]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -532,18 +539,18 @@ const RadioPage = () => {
                   <div className="card-actions justify-between mt-4">
                     <label
                       htmlFor="my-modal-6"
-                      className="btn btn-outline text-[#555555] normal-case rounded-xl cursor-pointer"
+                      className="btn btn-outline text-[#555555] normal-case rounded cursor-pointer"
                     >
                       Report
                     </label>
 
                     <label
                       htmlFor="my-modal-5"
-                      className="rounded-xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
+                      className="rounded relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
                     >
-                      <span className="rounded-xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
-                      <span className="rounded-xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
-                        <span className="rounded-xl relative text-white">
+                      <span className="rounded w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
+                      <span className="rounded relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
+                        <span className="rounded relative text-white">
                           Give Heat 🔥
                         </span>
                       </span>
@@ -577,7 +584,7 @@ const RadioPage = () => {
           </div>
         </div>
 
-        <div className="drawer-side h-[95%] overflow-y-hidden">
+        <div className="drawer-side overflow-y-hidden">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-2 w-80 bg-black text-base-content border-r border-[#2a2a2a] ">
             {/* <!-- Sidebar content here --> */}
