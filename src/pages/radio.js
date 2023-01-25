@@ -357,8 +357,9 @@ const RadioPage = () => {
           <div className="flex justify-between ">
             <label
               htmlFor="my-drawer-2"
-              className="btn btn-ghost  text-white lg:hidden h-full"
+              className="btn btn-ghost  text-white lg:hidden h-full border-b border-[#2a2a2a]"
             >
+              queue
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

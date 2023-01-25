@@ -11,7 +11,6 @@ import Link from 'next/link';
 const activeChainId = ChainId.Mumbai;
 
 const Navbar = () => {
-  const address = useAddress();
   const isOnWrongNetwork = useNetworkMismatch();
   const [, switchNetwork] = useNetwork();
 
@@ -127,7 +126,7 @@ const Navbar = () => {
           href="/"
           className="bg-gradient-to-r from-yellow-600 to-red-600
                       bg-clip-text text-transparent
-                      background-animate text-xl"
+                      background-animate text-xl ml-2"
         >
           Etherwav
         </Link>

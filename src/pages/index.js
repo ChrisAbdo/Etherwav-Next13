@@ -74,7 +74,7 @@ const Home = () => {
               Give heat to your favorite songs and push them to the top
             </p>
             <motion.a
-              className="btn btn-outline rounded-xl"
+              className="btn btn-outline rounded-xl bg-black"
               initial={{ x: '-300%' }}
               animate={{ x: 0 }}
               transition={{ delay: 0.4 }}
@@ -295,7 +295,10 @@ const Home = () => {
                   uploading a beat!
                 </Link>
               </p>
-              <Link href="/upload" className="btn rounded-xl btn-outline">
+              <Link
+                href="/upload"
+                className="btn rounded-xl btn-outline bg-black"
+              >
                 Upload a beat now!
               </Link>
             </div>
