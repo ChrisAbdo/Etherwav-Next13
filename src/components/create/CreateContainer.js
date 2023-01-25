@@ -109,7 +109,7 @@ export default function CreateContainer({}) {
                 htmlFor="my-drawer-2"
                 className="btn btn-primary drawer-button lg:hidden"
               >
-                Publish
+                Publish!
               </label>{' '}
             </div>
           </div>
