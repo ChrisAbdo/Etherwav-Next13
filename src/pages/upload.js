@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Web3 from 'web3';
 import Radio from '../../backend/build/contracts/Radio.json';
 import NFT from '../../backend/build/contracts/NFT.json';
+
 import toast from 'react-hot-toast';
 import Link from 'next/link';
 
@@ -209,6 +210,7 @@ const Upload = () => {
     try {
       const web3 = new Web3(window.ethereum);
       const url = await uploadToIPFS();
+
       const networkId = await web3.eth.net.getId();
 
       // Mint the NFT
