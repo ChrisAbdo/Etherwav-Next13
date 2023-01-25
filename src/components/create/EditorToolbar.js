@@ -5,18 +5,6 @@ import { EditorTab } from './CreateContainer';
 import decorateMarkdown from '../../lib/markdown/decorateMarkdown';
 import { capitalize } from '../../lib/helper/format';
 
-const tabs = [
-  {
-    name: 'write',
-  },
-  {
-    name: 'preview',
-  },
-  {
-    name: 'guide',
-  },
-];
-
 const editorOptions = [
   {
     name: 'heading',
@@ -77,20 +65,6 @@ export default function EditorToolbar({
 }) {
   return (
     <>
-      {tabs.map((tab, i) => (
-        <div key={i}>
-          <button
-            onClick={() => setActiveTab(tab.name)}
-            className={`${styles.navbarTab} ${
-              activeTab === tab.name ? styles.navbarTabActive : ''
-            }`}
-            startIcon={tab.icon}
-          >
-            {capitalize(tab.name)}
-          </button>
-        </div>
-      ))}
-
       {/* Right side of editor (Editor options) */}
       <div>
         {editorOptions.map((option, i) => (

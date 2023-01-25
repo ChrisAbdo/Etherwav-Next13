@@ -136,6 +136,9 @@ const Navbar = () => {
           <li>
             <Link href="/profile">Profile</Link>
           </li>
+          <li>
+            <Link href="/lens-upload">Lens Upload🌿</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">

@@ -15,28 +15,9 @@ export default function CoverImage({ coverImage, setCoverImage }) {
   if (!coverImage) {
     return (
       <>
-        <div
-          className={styles.dragAndDropZone}
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            e.preventDefault();
-            const file = e.dataTransfer.files[0];
-            if (file) {
-              setCoverImage(file);
-            }
-          }}
-          onClick={() => {
-            if (fileInputRef.current) {
-              fileInputRef.current.click();
-            }
-          }}
-        >
-          <h1>Drag and drop your cover image here</h1>
-        </div>
-
-        {/* Hidden input field */}
         <input
           type="file"
+          className="file-input file-input-bordered w-full max-w-xs"
           accept="image/*"
           ref={fileInputRef}
           onChange={(e) => {
@@ -45,7 +26,6 @@ export default function CoverImage({ coverImage, setCoverImage }) {
               setCoverImage(file);
             }
           }}
-          style={{ display: 'none' }}
         />
       </>
     );
@@ -61,7 +41,7 @@ export default function CoverImage({ coverImage, setCoverImage }) {
         className={styles.coverImagePreview}
       />
       <button onClick={() => setCoverImage(null)} className="btn">
-        close
+        remove
       </button>
     </div>
   );

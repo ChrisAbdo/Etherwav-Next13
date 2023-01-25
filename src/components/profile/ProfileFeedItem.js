@@ -9,7 +9,7 @@ import { formatNum, getPreviewText } from '../../lib/helper/format';
 export default function ProfileFeedItem({ post }) {
   return (
     // <Link href={`/post/${post.id}`}>
-    <div className="card card3 bg-base-100 shadow-xl border border-white cursor-pointer">
+    <div className="card card-side card3 bg-base-100 shadow-xl border border-white cursor-pointer">
       <figure>
         <MediaRenderer
           src={
@@ -22,6 +22,7 @@ export default function ProfileFeedItem({ post }) {
             ''
           }
           alt={post?.metadata?.name || 'Loading...'}
+          className="h-64 w-64"
         />
       </figure>
       <div className="card-body">
@@ -82,10 +83,10 @@ export default function ProfileFeedItem({ post }) {
             </svg>
           </span>
         </div>
-      </div>
 
-      <div>
-        <h1>{getFormattedDate(post.createdAt) || 'Loading...'}</h1>
+        <div>
+          <h1>{getFormattedDate(post.createdAt) || 'Loading...'}</h1>
+        </div>
       </div>
     </div>
     // </Link>

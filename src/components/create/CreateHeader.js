@@ -12,25 +12,7 @@ export default function CreateHeader(props) {
 
   return (
     <>
-      <div>
-        <div>
-          <Link href="/feed">
-            <Image src="/logo.png" alt="logo" height={56} width={56} />
-          </Link>
-        </div>
-
-        {!isSignedIn || !lensProfile ? (
-          <SignInButton />
-        ) : (
-          <>
-            <button
-              onClick={() => setOpenSettingsSidebar(!openSettingsSidebar)}
-            >
-              settings
-            </button>
-          </>
-        )}
-      </div>
+      <div>{!isSignedIn || !lensProfile ? <SignInButton /> : <></>}</div>
 
       <SettingsSidebar
         postMetadata={props.postMetadata}

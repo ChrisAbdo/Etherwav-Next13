@@ -4,7 +4,7 @@ import ProfileFeedItem from './ProfileFeedItem';
 
 export default function ProfileFeed({ posts }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 p-4 space-y-4 ">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
       {' '}
       {posts?.publications?.items?.map((post) => (
         <ProfileFeedItem post={post} key={post.id} />

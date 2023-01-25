@@ -8,9 +8,6 @@ import MarkdownEditor from './MarkdownEditor';
 import styles from './create.module.css';
 
 export default function CreateContainer({}) {
-  // State to keep track of which tab is active
-  const [activeTab, setActiveTab] = useState('write');
-
   // Reference to the editor input element
   const mdInputRef = useRef(null);
 
@@ -27,58 +24,112 @@ export default function CreateContainer({}) {
   const [metadata, setMetadata] = useState({});
 
   return (
-    <>
-      <CreateHeader
-        postMetadata={{
-          ...metadata,
-          title,
-          coverImage,
-          content: mdInput,
-        }}
-        setPostMetadata={setMetadata}
-      />
-      <div>
-        <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />
+    // <>
+    //   <CreateHeader
+    //     postMetadata={{
+    //       ...metadata,
+    //       title,
+    //       coverImage,
+    //       content: mdInput,
+    //     }}
+    //     setPostMetadata={setMetadata}
+    //   />
+    //   <div>
+    //     <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />
 
-        <EditorToolbar
-          mdInputRef={mdInputRef}
-          setMdValue={setMdInput}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+    //     <EditorToolbar mdInputRef={mdInputRef} setMdValue={setMdInput} />
 
-        {/* Preview Tab */}
-        {activeTab === 'preview' && <MarkdownPreview content={mdInput} />}
+    //     <>
+    //       <input
+    //         label="Title"
+    //         fullWidth
+    //         placeholder="Enter a title..."
+    //         size="medium"
+    //         variant="standard"
+    //         InputProps={{
+    //           className: styles.titleInput,
+    //         }}
+    //         value={title}
+    //         onChange={(e) => setTitle(e.target.value)}
+    //         multiline
+    //         maxRows={3}
+    //         required
+    //       />
+    //       <MarkdownEditor
+    //         mdInputRef={mdInputRef}
+    //         mdValue={mdInput}
+    //         setMdValue={setMdInput}
+    //       />
+    //     </>
+    //   </div>
+    // </>
 
-        {/* Guide tab */}
-        {activeTab === 'guide' && <MarkdownPreview content={guideText} />}
+    <div className="drawer drawer-mobile">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col items-center ">
+        {/* <!-- Page content here --> */}
 
-        {/* Write tab */}
-        {activeTab === 'write' && (
-          <>
-            <input
+        <div className="card w-96 border border-[#2a2a2a] rounded-xl shadow-xl mt-6">
+          <h1 className="card-title text-center justify-center mt-4">
+            Create a new post
+          </h1>
+          <figure>
+            <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />{' '}
+          </figure>
+          <div className="card-body">
+            {/* <input
               label="Title"
-              fullWidth
               placeholder="Enter a title..."
-              size="medium"
-              variant="standard"
-              InputProps={{
-                className: styles.titleInput,
-              }}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              multiline
               maxRows={3}
               required
-            />
+            /> */}
+
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Title</span>
+              </label>
+              <input
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered w-full max-w-xs"
+              />
+            </div>
+
             <MarkdownEditor
               mdInputRef={mdInputRef}
               mdValue={mdInput}
               setMdValue={setMdInput}
             />
-          </>
-        )}
+            <div className="card-actions justify-end">
+              <label
+                htmlFor="my-drawer-2"
+                className="btn btn-primary drawer-button lg:hidden"
+              >
+                Publish
+              </label>{' '}
+            </div>
+          </div>
+        </div>
       </div>
-    </>
+      <div className="drawer-side border-r border-[#2a2a2a]">
+        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+        <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          {/* <!-- Sidebar content here --> */}
+          <CreateHeader
+            postMetadata={{
+              ...metadata,
+              title,
+              coverImage,
+              content: mdInput,
+            }}
+            setPostMetadata={setMetadata}
+          />
+        </ul>
+      </div>
+    </div>
   );
 }
